@@ -1,16 +1,51 @@
 #include <iostream>
+#include <vector>
+#include "CellaValore.h"
+#include "CellaSomma.h"
+#include "CellaMedia.h"
+#include "CellaMassimo.h"
+#include "CellaMinimo.h"
+using namespace std;
+int main () {
+    CellaValore * a = new CellaValore ("A1", 1,10);
+    CellaValore * b = new CellaValore ("B1", 1,20);
+    CellaValore * c = new CellaValore ("C1",1,30);
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    vector <CellaValore *> celle = {a,b,c};
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
+    CellaSomma * somma = new CellaSomma ("Somma",1,celle);
+    cout<<"Stato iniziale :";
+    somma->showResult();
 
-    return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
+    c->setValore(20);
+
+    cout<<"Stato aggiornato: ";
+    somma->show();
+
+    CellaMedia * media = new CellaMedia ("Media : ", 1, celle);
+    cout<<"Stato inziziale: ";
+    media->showResult();
+
+    b->setValore(10);
+
+    cout<<"Stato aggiornato: ";
+    media->showResult();
+
+    CellaMassimo * massimo = new CellaMassimo ("Massimo :", 1, celle);
+    cout<<"Stato iniziale: ";
+    massimo->showResult();
+
+    a->setValore(10);
+
+    cout<<"Stato aggiornato : ";
+    massimo->showResult();
+
+    CellaMinimo * minimo = new CellaMinimo ("Minimo : ", 1, celle);
+    cout<<"Stato iniziale :";
+    minimo ->showResult();
+
+    a->setValore (5);
+
+    cout<<"Stato aggiornato: ";
+    minimo->showResult();
 }
